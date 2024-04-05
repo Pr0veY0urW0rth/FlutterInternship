@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:intership/src/core/utils/injections.dart';
 import 'package:intership/src/features/auth/presentation/screens/auth_screen.dart';
+import 'package:intership/src/features/settings/presentation/screens/settings_screen.dart';
+import 'package:intership/src/features/texts_list/presentation/screens/texts_list_Screen.dart';
 import 'package:intership/src/shared/presentation/widgets/tab_bar.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AppRouter {
   static final AppRouter _instance = AppRouter._internal();
@@ -51,7 +55,7 @@ class AppRouter {
                 path: textsListPath,
                 pageBuilder: (context, GoRouterState state) {
                   return getPage(
-                    child: const AuthScreen(),
+                    child: TextsListScreen(),
                     state: state,
                   );
                 },
@@ -65,7 +69,7 @@ class AppRouter {
                 path: settingsPath,
                 pageBuilder: (context, GoRouterState state) {
                   return getPage(
-                    child: const AuthScreen(),
+                    child: const SettingsScreen(),
                     state: state,
                   );
                 },
@@ -108,9 +112,12 @@ class AppRouter {
       ),
     ];
 
+    final supabase = sl.get<Supabase>().client.auth;
+
     router = GoRouter(
       navigatorKey: parentNavigatorKey,
-      initialLocation: authPath,
+      initialLocation:
+          supabase.currentSession == null ? authPath : textsListPath,
       routes: routes,
     );
   }

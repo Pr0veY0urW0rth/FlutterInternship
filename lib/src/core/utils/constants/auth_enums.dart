@@ -6,3 +6,5 @@ enum AuthError {
   wrongEmail,
   wrongPassword,
 }
+
+enum AuthType { signUp, signIn }
