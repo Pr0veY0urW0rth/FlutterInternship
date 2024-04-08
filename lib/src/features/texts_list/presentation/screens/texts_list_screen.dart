@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership/src/core/utils/injections.dart';
 import 'package:intership/src/features/texts_list/data/datasource/remote/texts_list_supabase_datasource.dart';
 import 'package:intership/src/features/texts_list/domain/usecases/fetch_texts_usecase.dart';
+import 'package:intership/src/features/texts_list/domain/usecases/get_saved_texts_usecase.dart';
+import 'package:intership/src/features/texts_list/domain/usecases/save_texts_usecase.dart';
 import 'package:intership/src/features/texts_list/presentation/bloc/texts_list_bloc.dart';
 import 'package:intership/src/features/texts_list/presentation/widgets/texts_list.dart';
 
@@ -27,7 +29,9 @@ class TextsListScreen extends StatelessWidget {
           create: (context) {
             return TextsListBloc(
               fetchTextsUseCase: sl.get<FetchTextsUseCase>(),
-            );
+              saveTextsUseCase: sl.get<SaveTextsUseCase>(),
+              getSavedTextsUseCase: sl.get<GetSavedTextsUseCase>(),
+            )..add(const SavedTextsFetched());
           },
           child: const TextsList(),
         ),

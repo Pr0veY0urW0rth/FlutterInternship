@@ -25,7 +25,12 @@ class TextsList extends StatelessWidget {
                     ? TextTile(
                         header: state.list[index].header,
                         text: state.list[index].text)
-                    : null),
+                    : ElevatedButton(
+                        onPressed: () => context
+                            .read<TextsListBloc>()
+                            .add(const TextsFetched()),
+                        child: Text('Загрузить данные'))),
+                itemCount: state.list.length + 1,
               );
             case TextStatus.failure:
               return const Text('Ашипка');

@@ -23,7 +23,7 @@ class TextsListLocalRepositoryImpl extends TextsListLocalRepository {
   @override
   Future<void> saveTextsList(List<TextEntity> list) async {
     List<TextModel> modelsList = [];
-    list.map((element) {
+    list.forEach((element) {
       modelsList.add(TextModel.fromEntity(element));
     });
     await datasource.saveTextsList(modelsList);

@@ -7,6 +7,7 @@ import 'package:intership/src/features/texts_list/data/repository/texts_list_loc
 import 'package:intership/src/features/texts_list/data/repository/texts_list_remote_repository_impl.dart';
 import 'package:intership/src/features/texts_list/domain/repository/texts_list_repository.dart';
 import 'package:intership/src/features/texts_list/domain/usecases/fetch_texts_usecase.dart';
+import 'package:intership/src/features/texts_list/domain/usecases/get_saved_texts_usecase.dart';
 import 'package:intership/src/features/texts_list/domain/usecases/save_texts_usecase.dart';
 
 initTextsListInjections() {
@@ -19,4 +20,5 @@ initTextsListInjections() {
       TextsListLocalRepositoryImpl(sl()));
   sl.registerSingleton<FetchTextsUseCase>(FetchTextsUseCase(sl()));
   sl.registerSingleton<SaveTextsUseCase>(SaveTextsUseCase(sl()));
+  sl.registerSingleton<GetSavedTextsUseCase>(GetSavedTextsUseCase(sl()));
 }

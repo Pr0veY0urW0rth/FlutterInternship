@@ -3,6 +3,8 @@ import 'package:go_router/go_router.dart';
 import 'package:intership/src/core/utils/injections.dart';
 import 'package:intership/src/features/auth/presentation/screens/auth_screen.dart';
 import 'package:intership/src/features/settings/presentation/screens/settings_screen.dart';
+import 'package:intership/src/features/text_details/presentation/screens/text_details_screen.dart';
+import 'package:intership/src/features/text_edit/presentation/screens/text_edit_screen.dart';
 import 'package:intership/src/features/texts_list/presentation/screens/texts_list_Screen.dart';
 import 'package:intership/src/shared/presentation/widgets/tab_bar.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
@@ -24,6 +26,8 @@ class AppRouter {
       GlobalKey<NavigatorState>();
   static final GlobalKey<NavigatorState> textDetailsNavigatorKey =
       GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> textEditNavigatorKeu =
+      GlobalKey<NavigatorState>();
   static final GlobalKey<NavigatorState> settingsNavigatorKey =
       GlobalKey<NavigatorState>();
 
@@ -37,6 +41,7 @@ class AppRouter {
   static const String authPath = '/auth';
   static const String textsListPath = '/textsList';
   static const String textDetailsPath = '/textDetails';
+  static const String textEditPath = '/textEdit';
   static const String settingsPath = '/settings';
 
   factory AppRouter() {
@@ -105,11 +110,18 @@ class AppRouter {
         path: textDetailsPath,
         pageBuilder: (context, state) {
           return getPage(
-            child: const AuthScreen(),
+            child: const TextDetailsScreen(),
             state: state,
           );
         },
       ),
+      GoRoute(
+        parentNavigatorKey: parentNavigatorKey,
+        path: textEditPath,
+        pageBuilder: (context, state) {
+          return getPage(child: const TextEditScreen(), state: state);
+        },
+      )
     ];
 
     final supabase = sl.get<Supabase>().client.auth;
