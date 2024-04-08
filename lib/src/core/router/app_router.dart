@@ -107,19 +107,28 @@ class AppRouter {
       ),
       GoRoute(
         parentNavigatorKey: parentNavigatorKey,
-        path: textDetailsPath,
+        path: '$textDetailsPath/:header/:text',
+        name: textDetailsPath,
         pageBuilder: (context, state) {
           return getPage(
-            child: const TextDetailsScreen(),
+            child: TextDetailsScreen(
+              header: state.pathParameters['header']!,
+              text: state.pathParameters['text']!,
+            ),
             state: state,
           );
         },
       ),
       GoRoute(
         parentNavigatorKey: parentNavigatorKey,
-        path: textEditPath,
+        path: '$textEditPath/:id',
+        name: textEditPath,
         pageBuilder: (context, state) {
-          return getPage(child: const TextEditScreen(), state: state);
+          return getPage(
+              child: TextEditScreen(
+                id: int.parse(state.pathParameters['id']!),
+              ),
+              state: state);
         },
       )
     ];
