@@ -5,13 +5,14 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthSupabaseDatasource extends AuthRemoteDatasource {
   @override
-  Future<void> signIn(UserModel user) async {
+  Future<String> signIn(UserModel user) async {
     final supabase = sl.get<Supabase>().client.auth;
     try {
       await supabase.signInWithPassword(
           email: user.email!, password: user.password!);
+      return supabase.currentSession!.accessToken.toString();
     } catch (_) {
-      return;
+      throw Exception('Failed to login');
     }
   }
 

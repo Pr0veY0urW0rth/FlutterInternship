@@ -2,11 +2,11 @@
 import 'package:intership/src/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:intership/src/features/auth/data/models/user.dart';
 import 'package:intership/src/features/auth/domain/entities/user.dart';
-import 'package:intership/src/features/auth/domain/repositories/auth_repository.dart';
+import 'package:intership/src/features/auth/domain/repositories/auth_remote_repository.dart';
 
-class AuthRepositoryImpl extends AuthRepository {
+class AuthRemoteRepositoryImpl extends AuthRemoteRepository {
   final AuthRemoteDatasource datasource;
-  AuthRepositoryImpl(
+  AuthRemoteRepositoryImpl(
     this.datasource,
   );
 
@@ -16,7 +16,7 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<void> signIn(UserEntity user) async {
-    await datasource.signIn(UserModel.fromEntity(user));
+  Future<String> signIn(UserEntity user) async {
+    return await datasource.signIn(UserModel.fromEntity(user));
   }
 }
