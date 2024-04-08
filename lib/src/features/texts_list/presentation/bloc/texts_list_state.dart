@@ -1,7 +1,7 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 part of 'texts_list_bloc.dart';
 
-enum TextStatus { initial, success, failure }
+enum TextStatus { initial, loading, success, failure }
 
 class TextsListState extends Equatable {
   const TextsListState({

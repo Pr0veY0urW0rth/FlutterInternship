@@ -4,6 +4,7 @@ import 'package:intership/src/core/utils/constants/supabase_constants.dart';
 import 'package:intership/src/features/auth/auth_injections.dart';
 import 'package:intership/src/features/settings/settings_injections.dart';
 import 'package:intership/src/features/texts_list/data/models/text.dart';
+import 'package:intership/src/features/texts_list/texts_list_injections.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
 final sl = GetIt.instance;
@@ -14,6 +15,7 @@ Future<void> initInjections() async {
   initAuthInjections();
   initSettingsInjections();
   initHiveDatabase();
+  initTextsListInjections();
 }
 
 initSupabaseInjections() async {
