@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:intership/src/features/texts_list/data/datasource/local/texts_list_hive_datasource.dart';
+import 'package:intership/src/features/texts_list/data/datasource/remote/texts_list_supabase_datasource.dart';
 
 class TextsListScreen extends StatelessWidget {
   TextsListScreen({super.key});
-  final cringe = TextsListHiveDatasource();
+  final cringe = TextsListSupabaseDatasource();
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +16,16 @@ class TextsListScreen extends StatelessWidget {
         ),
         backgroundColor: Colors.blue,
       ),
-      body: const Center(
+      body: Center(
         child: Column(
-          children: [Text('Texts List')],
+          children: [
+            ElevatedButton(
+                onPressed: () async {
+                  var res = await cringe.fetchTexts();
+                  print(res);
+                },
+                child: Text('data'))
+          ],
         ),
       ),
     );

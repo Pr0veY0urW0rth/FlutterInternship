@@ -12,21 +12,9 @@ class TextsListHiveDatasource extends TextsListLocalDatasource {
   }
 
   @override
-  Future<void> saveText(TextModel text) async {
-    await Hive.openBox('textsListBox');
-    var box = Hive.box('textsListBox');
-    var list = box.get(textsListKey, defaultValue: []);
-    list.add(text);
-    await box.put(textsListKey, list);
-  }
-
-  @override
   Future<void> saveTextsList(List<TextModel> list) async {
     await Hive.openBox('textsListBox');
     var box = Hive.box('textsListBox');
     await box.put(textsListKey, list);
   }
-
-  @override
-  Future<void> editSavedText(TextModel text) async {}
 }

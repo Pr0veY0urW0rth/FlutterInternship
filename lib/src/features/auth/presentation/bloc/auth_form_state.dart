@@ -8,7 +8,7 @@ final class AuthState extends Equatable {
     this.password = const Password.pure(),
     this.isPasswordVisible = false,
     this.isValid = false,
-    this.type = AuthType.signUp,
+    this.type = AuthType.signIn,
   });
 
   final FormzSubmissionStatus status;

@@ -83,7 +83,7 @@ class _PasswordInput extends StatelessWidget {
                     : Icons.visibility_off_rounded),
               ),
             ),
-            obscureText: state.isPasswordVisible,
+            obscureText: !state.isPasswordVisible,
             errorText:
                 state.password.displayError != null ? 'Неверный пароль!' : null,
           );
@@ -95,7 +95,8 @@ class _AuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
-      if (state.status == FormzSubmissionStatus.success) {
+      if (state.status == FormzSubmissionStatus.success &&
+          state.type == AuthType.signIn) {
         context.go(AppRouter.textsListPath);
       }
     }, builder: (context, state) {

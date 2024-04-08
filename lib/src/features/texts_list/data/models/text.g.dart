@@ -19,17 +19,20 @@ class TextModelAdapter extends TypeAdapter<TextModel> {
     return TextModel(
       header: fields[0] as String,
       text: fields[1] as String,
+      supabaseId: fields[2] as int,
     );
   }
 
   @override
   void write(BinaryWriter writer, TextModel obj) {
     writer
-      ..writeByte(2)
+      ..writeByte(3)
       ..writeByte(0)
       ..write(obj.header)
       ..writeByte(1)
-      ..write(obj.text);
+      ..write(obj.text)
+      ..writeByte(2)
+      ..write(obj.supabaseId);
   }
 
   @override
