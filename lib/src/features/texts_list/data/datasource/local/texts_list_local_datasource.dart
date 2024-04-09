@@ -1,4 +1,4 @@
-import 'package:intership/src/features/texts_list/data/models/text.dart';
+import 'package:intership/src/shared/data/models/text.dart';
 
 abstract class TextsListLocalDatasource {
   Future<List<TextModel>> getSavedTexts();

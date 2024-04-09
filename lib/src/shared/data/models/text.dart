@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import 'package:hive_flutter/adapters.dart';
 
-import 'package:intership/src/features/texts_list/domain/entities/text.dart';
+import 'package:intership/src/shared/domain/entities/text.dart';
 
 part 'text.g.dart';
 

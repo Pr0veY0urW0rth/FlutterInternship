@@ -22,8 +22,8 @@ class TextDetailsScreen extends StatelessWidget {
         ),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
-        child: Center(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
           child: Column(
             children: [
               Text(

@@ -1,6 +1,6 @@
 import 'package:equatable/equatable.dart';
 
-import 'package:intership/src/features/texts_list/data/models/text.dart';
+import 'package:intership/src/shared/data/models/text.dart';
 
 class TextEntity extends Equatable {
   const TextEntity({

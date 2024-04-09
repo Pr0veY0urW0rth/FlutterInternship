@@ -2,7 +2,7 @@ import 'package:hive/hive.dart';
 import 'package:intership/src/core/utils/constants/hive_boxes.dart';
 import 'package:intership/src/core/utils/constants/hive_keys.dart';
 import 'package:intership/src/features/texts_list/data/datasource/local/texts_list_local_datasource.dart';
-import 'package:intership/src/features/texts_list/data/models/text.dart';
+import 'package:intership/src/shared/data/models/text.dart';
 
 class TextsListHiveDatasource extends TextsListLocalDatasource {
   @override
