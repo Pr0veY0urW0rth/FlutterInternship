@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intership/src/core/router/app_router.dart';
 
@@ -13,13 +14,12 @@ class TextDetailsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          children: [
-            IconButton(
-                onPressed: () => context.go(AppRouter.textsListPath),
-                icon: const Icon(Icons.arrow_back_ios_new_outlined)),
-          ],
+        title: IconButton(
+          onPressed: () => context.go(AppRouter.textsListPath),
+          icon: const Icon(Icons.arrow_back_ios_new_outlined),
+          color: Colors.white,
         ),
+        backgroundColor: Colors.blue,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16),
@@ -29,12 +29,13 @@ class TextDetailsScreen extends StatelessWidget {
               Text(
                 header,
                 style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 48),
+                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 28),
               ),
+              const Gap(10),
               Text(
                 text,
                 style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.normal),
+                    fontSize: 18, fontWeight: FontWeight.normal),
               )
             ],
           ),
