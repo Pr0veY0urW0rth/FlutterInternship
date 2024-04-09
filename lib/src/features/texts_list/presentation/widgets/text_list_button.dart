@@ -2,8 +2,8 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 
-class SettingsButton extends StatelessWidget {
-  const SettingsButton(this.text,
+class TextListButton extends StatelessWidget {
+  const TextListButton(this.text,
       {super.key, this.height = 42, this.onPressed, this.fontSize = 16});
 
   final double fontSize;

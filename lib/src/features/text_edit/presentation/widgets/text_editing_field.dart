@@ -31,6 +31,11 @@ class TextEditingField extends StatelessWidget {
       textInputAction: TextInputAction.next,
       decoration: InputDecoration(
         hintText: hintText,
+        border: const OutlineInputBorder(
+          borderRadius: BorderRadius.all(Radius.circular(12.0)),
+          borderSide: BorderSide(width: 2, color: Colors.blue),
+          gapPadding: 2,
+        ),
       ),
       autocorrect: false,
       keyboardType: inputType,

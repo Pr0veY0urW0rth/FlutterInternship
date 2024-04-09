@@ -4,9 +4,10 @@ import 'package:gap/gap.dart';
 class TextTile extends StatelessWidget {
   const TextTile(
       {super.key, required this.header, required this.text, this.onPressed});
+
   final String header;
-  final String text;
   final VoidCallback? onPressed;
+  final String text;
 
   @override
   Widget build(BuildContext context) {
@@ -22,14 +23,16 @@ class TextTile extends StatelessWidget {
             )),
         child: Column(
           children: [
-            Text(header,
-                style:
-                    const TextStyle(fontWeight: FontWeight.bold, fontSize: 24)),
+            Text(
+              header,
+              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+              maxLines: 1,
+            ),
             const Gap(5),
             Text(
               text,
               style: const TextStyle(fontSize: 16),
-              maxLines: 3,
+              maxLines: 2,
             )
           ],
         ),

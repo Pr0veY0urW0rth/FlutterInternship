@@ -83,10 +83,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   }
 
   void _onAuthTypeChanged(AuthTypeChanged event, Emitter<AuthState> emit) {
-    if (state.type == AuthType.signIn) {
-      emit(state.copyWith(type: AuthType.signUp));
+    if (state.type.isSignIn) {
+      emit(state.copyWith(
+          status: FormzSubmissionStatus.initial, type: AuthType.signUp));
     } else {
-      emit(state.copyWith(type: AuthType.signIn));
+      emit(state.copyWith(
+          status: FormzSubmissionStatus.initial, type: AuthType.signIn));
     }
   }
 }

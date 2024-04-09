@@ -47,10 +47,12 @@ class TextEditBloc extends Bloc<TextEditEvent, TextEditState> {
 
   void _onTextHeaderChanged(
       TextHeaderChanged event, Emitter<TextEditState> emit) {
-    emit(state.copyWith(header: event.header));
+    emit(state.copyWith(
+        header: event.header, status: FormzSubmissionStatus.initial));
   }
 
   void _onTextChanged(TextChanged event, Emitter<TextEditState> emit) {
-    emit(state.copyWith(text: event.text));
+    emit(state.copyWith(
+        text: event.text, status: FormzSubmissionStatus.initial));
   }
 }

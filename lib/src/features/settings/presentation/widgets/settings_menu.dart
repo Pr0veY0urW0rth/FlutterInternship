@@ -13,13 +13,16 @@ class SettingsMenu extends StatelessWidget {
     return BlocBuilder<SettingsBloc, SettingsState>(
       builder: (BuildContext context, state) {
         return SingleChildScrollView(
-          child: Column(
-            children: [
-              SettingsButton('Выйти из учетной записи', onPressed: () {
-                context.read<SettingsBloc>().add(const SettingsLogOut());
-                context.go(AppRouter.authPath);
-              })
-            ],
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                SettingsButton('Выйти из учетной записи', onPressed: () {
+                  context.read<SettingsBloc>().add(const SettingsLogOut());
+                  context.go(AppRouter.authPath);
+                })
+              ],
+            ),
           ),
         );
       },

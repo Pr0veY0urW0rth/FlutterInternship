@@ -2,6 +2,7 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:gap/gap.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intership/src/core/router/app_router.dart';
 import 'package:intership/src/core/utils/constants/auth_enums.dart';
@@ -20,7 +21,28 @@ class AuthForm extends StatelessWidget {
           ScaffoldMessenger.of(context)
             ..hideCurrentSnackBar()
             ..showSnackBar(
-              const SnackBar(content: Text('Ошибка входа')),
+              SnackBar(
+                content: Text(
+                  state.type.isSignIn ? 'Ошибка входа' : 'Ошибка регистрации',
+                  style: const TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.red,
+              ),
+            );
+        }
+        if (state.status.isSuccess) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(
+              SnackBar(
+                content: Text(
+                  state.type.isSignIn
+                      ? 'Вход успешен!'
+                      : 'Регистрация прошла успешно!',
+                  style: const TextStyle(color: Colors.white),
+                ),
+                backgroundColor: Colors.green,
+              ),
             );
         }
       },
@@ -28,8 +50,11 @@ class AuthForm extends StatelessWidget {
         child: Column(
           children: [
             _EmailInput(),
+            const Gap(10),
             _PasswordInput(),
+            const Gap(10),
             _AuthButton(),
+            const Gap(10),
             _AuthLink()
           ],
         ),
@@ -95,18 +120,17 @@ class _AuthButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<AuthBloc, AuthState>(listener: (context, state) {
-      if (state.status == FormzSubmissionStatus.success &&
-          state.type == AuthType.signIn) {
+      if (state.status.isSuccess && state.type.isSignIn) {
         context.go(AppRouter.textsListPath);
       }
     }, builder: (context, state) {
       return state.status.isInProgress
           ? const CircularProgressIndicator()
           : AuthButton(
-              state.type == AuthType.signIn ? 'Войти' : 'Зарегистрироваться',
+              state.type.isSignIn ? 'Войти' : 'Зарегистрироваться',
               enabled: state.isValid,
               onPressed: () {
-                context.read<AuthBloc>().add(state.type == AuthType.signIn
+                context.read<AuthBloc>().add(state.type.isSignIn
                     ? const SignInSubmitted()
                     : const SignUpSubmitted());
               },
@@ -123,7 +147,7 @@ class _AuthLink extends StatelessWidget {
         builder: (context, state) {
           return RichText(
               text: TextSpan(
-                  text: state.type == AuthType.signIn
+                  text: state.type.isSignIn
                       ? 'Нет аккаунта? Создайте сейчас!'
                       : 'Есть аккаунт? Войдите!',
                   style: const TextStyle(color: Colors.blue),
