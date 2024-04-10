@@ -17,10 +17,14 @@ class QRScanned extends QRCodeScanEvent {
 }
 
 class PasswordChanged extends QRCodeScanEvent {
-  final String password;
-
   const PasswordChanged(this.password);
+
+  final String password;
 
   @override
   List<Object> get props => [password];
+}
+
+class QRDeciphered extends QRCodeScanEvent {
+  const QRDeciphered();
 }
