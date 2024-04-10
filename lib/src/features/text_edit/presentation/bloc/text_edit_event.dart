@@ -32,3 +32,7 @@ class TextChanged extends TextEditEvent {
   @override
   List<Object> get props => [text];
 }
+
+class QRCodeGenerated extends TextEditEvent {
+  const QRCodeGenerated();
+}

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership/src/core/utils/injections.dart';
@@ -6,6 +8,7 @@ import 'package:intership/src/features/texts_list/domain/usecases/fetch_texts_us
 import 'package:intership/src/features/texts_list/domain/usecases/get_saved_texts_usecase.dart';
 import 'package:intership/src/features/texts_list/domain/usecases/save_texts_usecase.dart';
 import 'package:intership/src/features/texts_list/presentation/bloc/texts_list_bloc.dart';
+import 'package:intership/src/features/texts_list/presentation/widgets/text_list_float_button.dart';
 import 'package:intership/src/features/texts_list/presentation/widgets/texts_list.dart';
 
 class TextsListScreen extends StatelessWidget {
@@ -36,6 +39,12 @@ class TextsListScreen extends StatelessWidget {
           child: const TextsList(),
         ),
       ),
+      floatingActionButton: (Platform.isAndroid || Platform.isIOS)
+          ? TextListFloatButton(
+              icon: Icons.qr_code_scanner_outlined,
+              onPressed: () {},
+            )
+          : null,
     );
   }
 }

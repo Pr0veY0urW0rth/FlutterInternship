@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intership/src/core/router/app_router.dart';
 import 'package:intership/src/features/text_edit/presentation/bloc/text_edit_bloc.dart';
 import 'package:intership/src/features/text_edit/presentation/widgets/text_edit_button.dart';
+import 'package:intership/src/features/text_edit/presentation/widgets/text_edit_qr_dialog.dart';
 import 'package:intership/src/features/text_edit/presentation/widgets/text_editing_field.dart';
 import 'package:gap/gap.dart';
 
@@ -49,7 +50,9 @@ class TextEditForm extends StatelessWidget {
             Gap(10),
             _TextEditingField(),
             Gap(10),
-            _TextEditButton()
+            _TextEditButton(),
+            Gap(10),
+            _QRCodeGenerateButton(),
           ],
         ),
       ),
@@ -118,5 +121,25 @@ class _TextEditButton extends StatelessWidget {
               },
             );
     });
+  }
+}
+
+class _QRCodeGenerateButton extends StatelessWidget {
+  const _QRCodeGenerateButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<TextEditBloc, TextEditState>(
+        listener: (context, state) {},
+        builder: (context, state) {
+          return TextEditButton('Создать QR-код', onPressed: () {
+            showDialog(
+                context: context,
+                builder: (c) => BlocProvider.value(
+                    value: BlocProvider.of<TextEditBloc>(context),
+                    child: TextEditQRDialog(
+                        header: state.header, text: state.text)));
+          });
+        });
   }
 }

@@ -28,6 +28,9 @@ dependencies:
   formz: ^0.6.0
   hive_generator: ^2.0.1
   hive_flutter: ^1.1.0
+  qr_flutter: ^4.1.0
+  barcode: ^2.2.6
+  local_auth: ^2.2.0
 
 dev_dependencies:
   flutter_test:

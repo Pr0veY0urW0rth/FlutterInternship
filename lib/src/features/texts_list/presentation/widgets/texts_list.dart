@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:intership/src/core/router/app_router.dart';
 import 'package:intership/src/features/texts_list/presentation/bloc/texts_list_bloc.dart';
 import 'package:intership/src/features/texts_list/presentation/widgets/text_list_button.dart';
+import 'package:intership/src/features/texts_list/presentation/widgets/text_list_qr_alert.dart';
 import 'package:intership/src/features/texts_list/presentation/widgets/text_tile.dart';
 
 class TextsList extends StatelessWidget {
@@ -46,6 +47,17 @@ class TextsList extends StatelessWidget {
                                             'id': state.list[index].supabaseId
                                                 .toString(),
                                           }),
+                            onLongPress: () => (!Platform.isAndroid &&
+                                    !Platform.isIOS)
+                                ? showDialog(
+                                    context: context,
+                                    builder: (c) => BlocProvider.value(
+                                        value: BlocProvider.of<TextsListBloc>(
+                                            context),
+                                        child: TextListQRAlert(
+                                            header: state.list[index].header,
+                                            text: state.list[index].text)))
+                                : null,
                           ),
                           const Gap(10)
                         ],
@@ -59,7 +71,7 @@ class TextsList extends StatelessWidget {
                 itemCount: state.list.length + 1,
               );
             case TextStatus.failure:
-              return const Text('Ашипка');
+              return const Text('Произошла ошибка загрузки данных!');
           }
         });
   }

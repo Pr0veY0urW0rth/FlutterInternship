@@ -3,16 +3,22 @@ import 'package:gap/gap.dart';
 
 class TextTile extends StatelessWidget {
   const TextTile(
-      {super.key, required this.header, required this.text, this.onPressed});
+      {super.key,
+      required this.header,
+      required this.text,
+      this.onPressed,
+      this.onLongPress});
 
   final String header;
   final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
   final String text;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
+      onLongPress: onLongPress,
       child: Container(
         padding: const EdgeInsets.all(10),
         height: MediaQuery.of(context).size.height * 0.2,

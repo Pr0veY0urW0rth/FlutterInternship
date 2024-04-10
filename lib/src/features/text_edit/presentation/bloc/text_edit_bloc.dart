@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:intership/src/core/utils/constants/text_edit_enums.dart';
 import 'package:intership/src/features/text_edit/domain/usecases/get_text_by_id_usecase.dart';
 import 'package:intership/src/features/text_edit/domain/usecases/save_text_localy_usecase.dart';
 import 'package:intership/src/features/text_edit/domain/usecases/save_text_remotely_usecase.dart';
@@ -55,4 +56,6 @@ class TextEditBloc extends Bloc<TextEditEvent, TextEditState> {
     emit(state.copyWith(
         text: event.text, status: FormzSubmissionStatus.initial));
   }
+
+  void _onQRGenerated(QRCodeGenerated evenet, Emitter<TextEditState> emit) {}
 }
