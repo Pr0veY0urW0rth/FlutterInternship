@@ -3,6 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:intership/src/core/utils/constants/supabase_constants.dart';
 import 'package:intership/src/features/auth/auth_injections.dart';
 import 'package:intership/src/features/settings/settings_injections.dart';
+import 'package:intership/src/features/text_create/text_create_injections.dart';
 import 'package:intership/src/features/text_details/text_details_injections.dart';
 import 'package:intership/src/features/text_edit/text_edit_injections.dart';
 import 'package:intership/src/shared/data/models/text.dart';
@@ -20,6 +21,7 @@ Future<void> initInjections() async {
   initTextsListInjections();
   initTextDetailsInjections();
   initTextEditInjections();
+  initTextCreateInjections();
 }
 
 initSupabaseInjections() async {

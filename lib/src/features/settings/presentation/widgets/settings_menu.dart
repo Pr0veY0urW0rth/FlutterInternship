@@ -20,7 +20,11 @@ class SettingsMenu extends StatelessWidget {
                 SettingsButton('Выйти из учетной записи', onPressed: () {
                   context.read<SettingsBloc>().add(const SettingsLogOut());
                   context.go(AppRouter.authPath);
-                })
+                }),
+                SettingsButton(
+                  'Удалить все данные',
+                  onPressed: () {},
+                ),
               ],
             ),
           ),

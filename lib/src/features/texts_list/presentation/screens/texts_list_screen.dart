@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership/src/core/utils/injections.dart';
@@ -10,6 +11,7 @@ import 'package:intership/src/features/texts_list/domain/usecases/save_texts_use
 import 'package:intership/src/features/texts_list/presentation/bloc/texts_list_bloc.dart';
 import 'package:intership/src/features/texts_list/presentation/widgets/text_list_float_button.dart';
 import 'package:intership/src/features/texts_list/presentation/widgets/texts_list.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class TextsListScreen extends StatelessWidget {
   TextsListScreen({super.key});
@@ -42,7 +44,23 @@ class TextsListScreen extends StatelessWidget {
       floatingActionButton: (Platform.isAndroid || Platform.isIOS)
           ? TextListFloatButton(
               icon: Icons.qr_code_scanner_outlined,
-              onPressed: () {},
+              onPressed: () => showDialog(
+                context: context,
+                builder: (c) => SizedBox(
+                  width: 400,
+                  height: 400,
+                  child: MobileScanner(
+                    // fit: BoxFit.contain,
+                    onDetect: (capture) {
+                      final List<Barcode> barcodes = capture.barcodes;
+                      final Uint8List? image = capture.image;
+                      for (final barcode in barcodes) {
+                        debugPrint('Barcode found! ${barcode.rawValue}');
+                      }
+                    },
+                  ),
+                ),
+              ),
             )
           : null,
     );
