@@ -25,11 +25,8 @@ class QRCodeScanBloc extends Bloc<QRCodeScanEvent, QRCodeScanState> {
     list.forEach((element) {
       result += ' ${element.rawValue}';
     });
-    print(result);
 
     emit(state.copyWith(text: TextEntity.fromJson(result)));
-    print("Header: ${state.text?.header} text: ${state.text?.text}");
-
     emit(state.copyWith(status: QRCodeScanStatus.success));
     // _decipherQRCodeUseCase.call();
   }
