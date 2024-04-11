@@ -7,7 +7,8 @@ class TextsListSupabaseDatasource extends TextsListRemoteDatasource {
   @override
   Future<List<TextModel>> fetchTexts() async {
     final supabase = sl.get<Supabase>().client;
-    final data = await supabase.from('Texts').select();
+    final data =
+        await supabase.from('Texts').select().order('id', ascending: true);
     List<TextModel> result = [];
 
     data.forEach((e) => result.add(TextModel.fromMap(e)));

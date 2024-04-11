@@ -1,26 +1,31 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-
 part of 'qr_code_scan_bloc.dart';
 
 class QRCodeScanState extends Equatable {
-  const QRCodeScanState(this.capture, this.text, {this.password = ''});
+  const QRCodeScanState(
+      {this.barcodesList = const [],
+      this.text,
+      this.status = QRCodeScanStatus.initial,
+      this.password = ''});
 
-  final BarcodeCapture capture;
+  final List<Barcode> barcodesList;
   final String password;
-  final QRTextEntity text;
+  final QRCodeScanStatus status;
+  final TextEntity? text;
 
   @override
-  List<Object> get props => [password, capture, text];
+  List<Object?> get props => [barcodesList, password, text, status];
 
   QRCodeScanState copyWith({
+    List<Barcode>? barcodesList,
     String? password,
-    BarcodeCapture? capture,
-    QRTextEntity? text,
+    TextEntity? text,
+    QRCodeScanStatus? status,
   }) {
     return QRCodeScanState(
+      barcodesList: barcodesList ?? this.barcodesList,
       password: password ?? this.password,
-      capture ?? this.capture,
-      text ?? this.text,
+      text: text ?? this.text,
+      status: status ?? this.status,
     );
   }
 }

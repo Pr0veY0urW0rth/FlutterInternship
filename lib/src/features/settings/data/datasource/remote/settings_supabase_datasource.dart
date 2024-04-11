@@ -12,4 +12,10 @@ class SettingSupabaseDatasource extends SettingsRemoteDatasource {
       return;
     }
   }
+
+  @override
+  Future<void> deleteAllData() {
+    // TODO: implement deleteAllData
+    throw UnimplementedError();
+  }
 }

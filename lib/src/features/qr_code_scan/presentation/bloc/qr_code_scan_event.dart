@@ -24,7 +24,3 @@ class PasswordChanged extends QRCodeScanEvent {
   @override
   List<Object> get props => [password];
 }
-
-class QRDeciphered extends QRCodeScanEvent {
-  const QRDeciphered();
-}

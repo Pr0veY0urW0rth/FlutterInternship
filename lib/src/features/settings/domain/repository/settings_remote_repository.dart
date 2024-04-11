@@ -1,4 +1,4 @@
-abstract class SettingsRemoteDatasource {
+abstract class SettingsRemoteRepository {
   Future<void> deleteAllData();
   Future<void> logOut();
 }

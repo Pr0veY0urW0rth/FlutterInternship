@@ -1,4 +1,4 @@
-abstract class SettingsRepository {
+abstract class SettingsLocalRepository {
   Future<void> deleteAllData();
   Future<void> logOut();
   Future<void> changeSupabaseOptionality();

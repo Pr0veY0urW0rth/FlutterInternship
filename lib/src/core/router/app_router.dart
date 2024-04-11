@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intership/src/core/utils/injections.dart';
 import 'package:intership/src/features/auth/presentation/screens/auth_screen.dart';
+import 'package:intership/src/features/qr_code_scan/presentation/screens/qr_code_scan_screen.dart';
 import 'package:intership/src/features/settings/presentation/screens/settings_screen.dart';
 import 'package:intership/src/features/text_details/presentation/screens/text_details_screen.dart';
 import 'package:intership/src/features/text_edit/presentation/screens/text_edit_screen.dart';
@@ -30,6 +31,8 @@ class AppRouter {
       GlobalKey<NavigatorState>();
   static final GlobalKey<NavigatorState> settingsNavigatorKey =
       GlobalKey<NavigatorState>();
+  static final GlobalKey<NavigatorState> qrCodeScanNavigatorKey =
+      GlobalKey<NavigatorState>();
 
   BuildContext get context =>
       router.routerDelegate.navigatorKey.currentContext!;
@@ -43,6 +46,7 @@ class AppRouter {
   static const String textDetailsPath = '/textDetails';
   static const String textEditPath = '/textEdit';
   static const String settingsPath = '/settings';
+  static const String qrCodeScanPath = '/qrCodeScan';
 
   factory AppRouter() {
     return _instance;
@@ -129,6 +133,14 @@ class AppRouter {
                 id: int.parse(state.pathParameters['id']!),
               ),
               state: state);
+        },
+      ),
+      GoRoute(
+        parentNavigatorKey: parentNavigatorKey,
+        path: qrCodeScanPath,
+        name: qrCodeScanPath,
+        pageBuilder: (context, state) {
+          return getPage(child: const QRCodeScanScreen(), state: state);
         },
       )
     ];

@@ -26,7 +26,7 @@ class TextsList extends StatelessWidget {
                     context.read<TextsListBloc>().add(const TextsFetched()),
               );
             case TextStatus.loading:
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             case TextStatus.success:
               return ListView.builder(
                 itemBuilder: ((context, index) => index < state.list.length
@@ -55,8 +55,8 @@ class TextsList extends StatelessWidget {
                                         value: BlocProvider.of<TextsListBloc>(
                                             context),
                                         child: TextListQRAlert(
-                                            header: state.list[index].header,
-                                            text: state.list[index].text)))
+                                          data: state.list[index].toJson(),
+                                        )))
                                 : null,
                           ),
                           const Gap(10)

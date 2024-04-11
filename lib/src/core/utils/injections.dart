@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:intership/src/core/utils/constants/supabase_constants.dart';
 import 'package:intership/src/features/auth/auth_injections.dart';
+import 'package:intership/src/features/qr_code_scan/qr_code_scan_injections.dart';
 import 'package:intership/src/features/settings/settings_injections.dart';
 import 'package:intership/src/features/text_create/text_create_injections.dart';
 import 'package:intership/src/features/text_details/text_details_injections.dart';
@@ -22,6 +23,7 @@ Future<void> initInjections() async {
   initTextDetailsInjections();
   initTextEditInjections();
   initTextCreateInjections();
+  initQRCodeScanInjections();
 }
 
 initSupabaseInjections() async {
