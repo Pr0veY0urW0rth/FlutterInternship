@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:intership/src/core/router/app_router.dart';
+import 'package:intership/src/core/user_cache_service/domain/usecase/user_supabase_check_usecase.dart';
 import 'package:intership/src/core/utils/injections.dart';
 import 'package:intership/src/features/text_edit/domain/usecases/get_text_by_id_usecase.dart';
 import 'package:intership/src/features/text_edit/domain/usecases/save_text_localy_usecase.dart';
@@ -33,6 +34,7 @@ class TextEditScreen extends StatelessWidget {
                 getTextByIdUseCase: sl.get<GetTextByIdUseCase>(),
                 saveTextLocalyUseCase: sl.get<SaveTextLocalyUseCase>(),
                 saveTextRemotelyUseCase: sl.get<SaveTextRemotelyUseCase>(),
+                userSupabaseCheckUseCase: sl.get<UserSupabaseCheckUseCase>(),
                 id: id)
               ..add(const SavedTextGotten());
           },

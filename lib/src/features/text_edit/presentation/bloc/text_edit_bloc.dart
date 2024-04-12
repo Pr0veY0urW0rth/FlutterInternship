@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:intership/src/core/user_cache_service/domain/usecase/user_supabase_check_usecase.dart';
 import 'package:intership/src/core/utils/constants/text_edit_enums.dart';
 import 'package:intership/src/features/text_edit/domain/usecases/get_text_by_id_usecase.dart';
 import 'package:intership/src/features/text_edit/domain/usecases/save_text_localy_usecase.dart';
@@ -15,10 +16,12 @@ class TextEditBloc extends Bloc<TextEditEvent, TextEditState> {
       {required GetTextByIdUseCase getTextByIdUseCase,
       required SaveTextLocalyUseCase saveTextLocalyUseCase,
       required SaveTextRemotelyUseCase saveTextRemotelyUseCase,
+      required UserSupabaseCheckUseCase userSupabaseCheckUseCase,
       required int id})
       : _getTextByIdUseCase = getTextByIdUseCase,
         _saveTextLocalyUseCase = saveTextLocalyUseCase,
         _saveTextRemotelyUseCase = saveTextRemotelyUseCase,
+        _supabaseCheckUseCase = userSupabaseCheckUseCase,
         super(TextEditState(id: id)) {
     on<TextChanged>(_onTextChanged);
     on<TextHeaderChanged>(_onTextHeaderChanged);
@@ -29,6 +32,7 @@ class TextEditBloc extends Bloc<TextEditEvent, TextEditState> {
   final GetTextByIdUseCase _getTextByIdUseCase;
   final SaveTextLocalyUseCase _saveTextLocalyUseCase;
   final SaveTextRemotelyUseCase _saveTextRemotelyUseCase;
+  final UserSupabaseCheckUseCase _supabaseCheckUseCase;
 
   Future<void> _onTextSaved(
       TextSaved event, Emitter<TextEditState> emit) async {
@@ -36,7 +40,10 @@ class TextEditBloc extends Bloc<TextEditEvent, TextEditState> {
     final entity = TextEntity(
         header: state.header, text: state.text, supabaseId: state.id);
     await _saveTextLocalyUseCase(params: entity);
-    await _saveTextRemotelyUseCase(params: entity);
+    bool useSupabase = await _supabaseCheckUseCase.call();
+    if (useSupabase) {
+      await _saveTextRemotelyUseCase(params: entity);
+    }
     emit(state.copyWith(status: FormzSubmissionStatus.success));
   }
 
