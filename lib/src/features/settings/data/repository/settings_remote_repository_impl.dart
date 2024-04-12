@@ -12,8 +12,7 @@ class SettingsRemoteRepositoryImpl extends SettingsRemoteRepository {
   }
 
   @override
-  Future<void> deleteAllData() {
-    // TODO: implement deleteAllData
-    throw UnimplementedError();
+  Future<void> deleteAllData() async {
+    await datasource.deleteAllData();
   }
 }
