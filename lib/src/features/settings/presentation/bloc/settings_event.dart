@@ -13,3 +13,7 @@ class SettingsLogOut extends SettingsEvent {
 class DataDeletion extends SettingsEvent {
   const DataDeletion();
 }
+
+class SupabaseUsageChanged extends SettingsEvent {
+  const SupabaseUsageChanged();
+}

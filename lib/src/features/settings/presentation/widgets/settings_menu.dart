@@ -26,6 +26,12 @@ class SettingsMenu extends StatelessWidget {
                   onPressed: () =>
                       context.read<SettingsBloc>().add(const DataDeletion()),
                 ),
+                SettingsButton(
+                  'Перестать сохранять в supabase',
+                  onPressed: () => context
+                      .read<SettingsBloc>()
+                      .add(const SupabaseUsageChanged()),
+                )
               ],
             ),
           ),
