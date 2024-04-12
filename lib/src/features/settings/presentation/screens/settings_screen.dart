@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intership/src/core/utils/injections.dart';
+import 'package:intership/src/features/settings/domain/usecases/delete_all_data_usecase.dart';
 import 'package:intership/src/features/settings/domain/usecases/log_out_usecase.dart';
 import 'package:intership/src/features/settings/presentation/bloc/settings_bloc.dart';
 import 'package:intership/src/features/settings/presentation/widgets/settings_menu.dart';
@@ -17,6 +18,8 @@ class SettingsScreen extends StatelessWidget {
           create: (context) {
             return SettingsBloc(
               logOutUseCase: sl.get<LogOutUseCase>(),
+              deleteAllLocalDataUseCase: sl.get<DeleteAllLocalDataUseCase>(),
+              deleteAllRemoteDataUseCase: sl.get<DeleteAllRemoteDataUseCase>(),
             );
           },
           child: const SettingsMenu(),

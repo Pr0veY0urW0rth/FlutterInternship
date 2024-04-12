@@ -7,6 +7,7 @@ import 'package:intership/src/features/settings/data/repository/settings_local_r
 import 'package:intership/src/features/settings/data/repository/settings_remote_repository_impl.dart';
 import 'package:intership/src/features/settings/domain/repository/settings_local_repository.dart';
 import 'package:intership/src/features/settings/domain/repository/settings_remote_repository.dart';
+import 'package:intership/src/features/settings/domain/usecases/delete_all_data_usecase.dart';
 import 'package:intership/src/features/settings/domain/usecases/log_out_usecase.dart';
 
 initSettingsInjections() {
@@ -17,4 +18,8 @@ initSettingsInjections() {
   sl.registerSingleton<SettingsLocalRepository>(
       SettingsLocalRepositoryImpl(sl()));
   sl.registerSingleton<LogOutUseCase>(LogOutUseCase(sl()));
+  sl.registerSingleton<DeleteAllLocalDataUseCase>(
+      DeleteAllLocalDataUseCase(sl()));
+  sl.registerSingleton<DeleteAllRemoteDataUseCase>(
+      DeleteAllRemoteDataUseCase(sl()));
 }

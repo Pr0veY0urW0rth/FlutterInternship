@@ -9,3 +9,7 @@ abstract class SettingsEvent extends Equatable {
 class SettingsLogOut extends SettingsEvent {
   const SettingsLogOut();
 }
+
+class DataDeletion extends SettingsEvent {
+  const DataDeletion();
+}

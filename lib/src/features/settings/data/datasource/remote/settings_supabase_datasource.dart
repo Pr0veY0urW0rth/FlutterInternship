@@ -14,8 +14,11 @@ class SettingSupabaseDatasource extends SettingsRemoteDatasource {
   }
 
   @override
-  Future<void> deleteAllData() {
-    // TODO: implement deleteAllData
-    throw UnimplementedError();
+  Future<void> deleteAllData() async {
+    final supabase = sl.get<Supabase>().client;
+    await supabase
+        .from('Texts')
+        .delete()
+        .match({'user_id': supabase.auth.currentSession!.user.id});
   }
 }

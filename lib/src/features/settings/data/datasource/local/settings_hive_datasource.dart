@@ -12,8 +12,9 @@ class SettingsHiveDatasource extends SettingsLocalDatasource {
   }
 
   @override
-  Future<void> deleteAllData() {
-    // TODO: implement deleteAllData
-    throw UnimplementedError();
+  Future<void> deleteAllData() async {
+    await Hive.openBox(textsBox);
+    var box = Hive.box(textsBox);
+    await box.delete(textsListKey);
   }
 }

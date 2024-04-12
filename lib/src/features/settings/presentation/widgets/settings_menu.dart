@@ -23,7 +23,8 @@ class SettingsMenu extends StatelessWidget {
                 }),
                 SettingsButton(
                   'Удалить все данные',
-                  onPressed: () {},
+                  onPressed: () =>
+                      context.read<SettingsBloc>().add(const DataDeletion()),
                 ),
               ],
             ),
