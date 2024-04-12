@@ -2,6 +2,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
+import 'package:intership/src/core/user_cache_service/domain/usecase/save_user_usecase.dart';
 import 'package:intership/src/core/utils/constants/auth_enums.dart';
 import 'package:intership/src/features/auth/domain/entities/user.dart';
 
@@ -17,8 +18,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   AuthBloc({
     required SignUpUseCase signUpUseCase,
     required SignInUseCase signInUseCase,
+    required SaveUserUseCase saveUserUseCase,
   })  : _signInUsecase = signInUseCase,
         _signUpUseCase = signUpUseCase,
+        _saveUserUseCase = saveUserUseCase,
         super(const AuthState()) {
     on<AuthEmailChanged>(_onEmailChanged);
     on<AuthPasswordChanged>(_onPasswordChanged);
@@ -30,6 +33,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   final SignInUseCase _signInUsecase;
   final SignUpUseCase _signUpUseCase;
+  final SaveUserUseCase _saveUserUseCase;
 
   void _onEmailChanged(AuthEmailChanged event, Emitter<AuthState> emit) {
     final email = Email.dirty(event.email);
@@ -59,7 +63,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
       try {
         final user = UserEntity(
             email: state.email.value, password: state.password.value);
-        await _signInUsecase.call(params: user);
+        final userCacheData = await _signInUsecase.call(params: user);
+        await _saveUserUseCase.call(params: userCacheData);
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       } catch (_) {
         emit(state.copyWith(status: FormzSubmissionStatus.failure));

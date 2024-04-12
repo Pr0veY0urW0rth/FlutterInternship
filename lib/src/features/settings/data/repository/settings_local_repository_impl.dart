@@ -10,18 +10,6 @@ class SettingsLocalRepositoryImpl extends SettingsLocalRepository {
   SettingsLocalDatasource datasource;
 
   @override
-  Future<void> addPasswordForData() {
-    // TODO: implement addPasswordForData
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> changeSupabaseOptionality() {
-    // TODO: implement changeSupabaseOptionality
-    throw UnimplementedError();
-  }
-
-  @override
   Future<void> deleteAllData() {
     // TODO: implement deleteAllData
     throw UnimplementedError();
@@ -30,12 +18,6 @@ class SettingsLocalRepositoryImpl extends SettingsLocalRepository {
   @override
   Future<void> logOut() {
     // TODO: implement logOut
-    throw UnimplementedError();
-  }
-
-  @override
-  Future<void> removePasswordForData() {
-    // TODO: implement removePasswordForData
     throw UnimplementedError();
   }
 }

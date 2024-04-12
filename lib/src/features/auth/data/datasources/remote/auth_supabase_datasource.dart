@@ -1,3 +1,4 @@
+import 'package:intership/src/core/user_cache_service/data/models/user_cache_model.dart';
 import 'package:intership/src/core/utils/injections.dart';
 import 'package:intership/src/features/auth/data/datasources/remote/auth_remote_datasource.dart';
 import 'package:intership/src/features/auth/data/models/user.dart';
@@ -5,12 +6,18 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 
 class AuthSupabaseDatasource extends AuthRemoteDatasource {
   @override
-  Future<String> signIn(UserModel user) async {
+  Future<UserCacheModel> signIn(UserModel user) async {
     final supabase = sl.get<Supabase>().client.auth;
     try {
       await supabase.signInWithPassword(
           email: user.email!, password: user.password!);
-      return supabase.currentSession!.accessToken.toString();
+      UserCacheModel userModel = UserCacheModel(
+          dataPassword: '',
+          email: supabase.currentSession!.user.email!,
+          isSavingInSupabase: true,
+          token: supabase.currentSession!.accessToken.toString(),
+          isUsingPassword: false);
+      return userModel; // supabase.currentSession!.accessToken.toString();
     } catch (_) {
       throw Exception('Failed to login');
     }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intership/src/core/user_cache_service/domain/usecase/save_user_usecase.dart';
 import 'package:intership/src/core/utils/injections.dart';
 import 'package:intership/src/features/auth/domain/usecases/sign_in_usecase.dart';
 import 'package:intership/src/features/auth/domain/usecases/sign_up_usecase.dart';
@@ -17,8 +18,10 @@ class AuthScreen extends StatelessWidget {
         child: BlocProvider(
           create: (context) {
             return AuthBloc(
-                signInUseCase: sl.get<SignInUseCase>(),
-                signUpUseCase: sl.get<SignUpUseCase>());
+              signInUseCase: sl.get<SignInUseCase>(),
+              signUpUseCase: sl.get<SignUpUseCase>(),
+              saveUserUseCase: sl.get<SaveUserUseCase>(),
+            );
           },
           child: const AuthForm(),
         ),

@@ -1,6 +1,7 @@
 import 'package:get_it/get_it.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:intership/src/core/user_cache_service/data/models/user_cache_model.dart';
+import 'package:intership/src/core/user_cache_service/user_cache_service_injections.dart';
 import 'package:intership/src/core/utils/constants/supabase_constants.dart';
 import 'package:intership/src/features/auth/auth_injections.dart';
 import 'package:intership/src/features/qr_code_scan/qr_code_scan_injections.dart';
@@ -25,6 +26,7 @@ Future<void> initInjections() async {
   initTextEditInjections();
   initTextCreateInjections();
   initQRCodeScanInjections();
+  initUserCacheServiceInjections();
 }
 
 initSupabaseInjections() async {
